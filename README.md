@@ -1,8 +1,8 @@
-fira-code
+fira-code-mode
 ===
-### Fira Code ligatures using prettify-symbols.
+### Minor mode for Fira Code ligatures using prettify-symbols.
 
-This is a simple package for Fira Code ligatures, built from these instructions: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols
+This is a simple minor mode for Fira Code ligatures, built from these instructions: https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols
 
 Has some of my customizations baked into it still.
 
