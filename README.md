@@ -43,7 +43,7 @@ Again, the last two lines are optional, but they're a reasonable starting point.
 
 ## Screenshots
 
-Coming soon
+![screenshot1](https://github.com/jming422/fira-code-mode/raw/master/screenshots/screenshot1.png)
 
 
 ## Contributing
