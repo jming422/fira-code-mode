@@ -97,16 +97,18 @@ will need to disable and re-enable fira-code-mode in order for the edits to take
 
 (define-minor-mode fira-code-mode
   "Fira Code ligatures minor mode"
-  :lighter " <->"
+  :lighter  "  \xe15b"
   :group 'fira-code-ligatures
   (setq-local prettify-symbols-unprettify-at-point 'right-edge)
   (if fira-code-mode
       (fira-code-mode--enable)
     (fira-code-mode--disable)))
 
+;; The following function isn't used directly by fira-code-mode, but it's left here for utility's sake
 (defun fira-code-mode--setup ()
   "Setup Fira Code Symbols font."
-  (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
+  (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
+  (message "Finished setting up the Fira Code Symbol font."))
 
 (provide 'fira-code-mode)
 ;;; fira-code-mode.el ends here
