@@ -9,7 +9,7 @@ You don't need to use Fira Code as your main font in Emacs for this to work! Usi
 
 ## Getting Started
 
-1. Install the Fira Code Symbol font to your system ([Download](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)) ([Original post](https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632).)
+1. Install the Fira Code Symbol font to your system ([Download](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)) ([Original post](https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632)).
    - If you don't know how to install a font to your system, check out Fira Code's main repo. They have some [good instructions here](https://github.com/tonsky/FiraCode/wiki/Installing).
    - Thanks to [@siegebell](https://github.com/siegebell) for creating this font.
 
