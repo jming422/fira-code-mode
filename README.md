@@ -28,7 +28,7 @@ Feel free to remove or change the `:custom` and `:hook` values of course, but th
 
 Without use-package:
 ```elisp
-(add-to-list 'load-path "~/.emacs.d/git-lisp/fira-code-mode/fira-code-mode.el")
+(add-to-list 'load-path "~/.emacs.d/git-lisp/fira-code-mode")
 (require 'fira-code-mode)
 (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 (add-hook 'prog-mode-hook 'fira-code-mode) ;; Enables fira-code-mode automatically for modes descended from prog-mode
