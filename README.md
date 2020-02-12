@@ -1,6 +1,7 @@
 fira-code-mode
 ===
 ### Minor mode for Fira Code ligatures using prettify-symbols.
+![screenshot1](https://github.com/jming422/fira-code-mode/raw/master/screenshots/screenshot1.png)
 
 This is a simple minor mode for Fira Code ligatures, built from [these instructions on the FiraCode repo](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols).
 
@@ -38,10 +39,6 @@ Again, the last two lines are optional, but they're a reasonable starting point.
 
 4. Enjoy the ligatures
 
-
-## Screenshots
-
-![screenshot1](https://github.com/jming422/fira-code-mode/raw/master/screenshots/screenshot1.png)
 
 
 ## Contributing
