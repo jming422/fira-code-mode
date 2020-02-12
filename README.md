@@ -7,18 +7,16 @@ This is a simple minor mode for Fira Code ligatures, built from [these instructi
 
 You don't need to use Fira Code as your main font in Emacs for this to work! Using this minor mode will give you just the ligatures from the Fira Code font; it won't alter your fonts or faces in any other way.
 
-## Dependencies
- - You must install the Fira Code Symbol font from here: https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632
-
 ## Getting Started
 
 1. Install the Fira Code Symbol font to your system ([Download](https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip)) ([Original post](https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632).)
-   - If you don't know how to install a font to your system, check out Fira Code's main repo. They have some good instructions [here](https://github.com/tonsky/FiraCode/wiki/Installing).
+   - If you don't know how to install a font to your system, check out Fira Code's main repo. They have some [good instructions here](https://github.com/tonsky/FiraCode/wiki/Installing).
    - Thanks to [@siegebell](https://github.com/siegebell) for creating this font.
 
 2. Clone this repo. I keep mine in `~/.emacs.d/git-lisp/fira-code-mode`, but you can put it wherever you like.
 
 3. Enable `fira-code-mode` in your config. Here are some examples:
+
 With [use-package](https://github.com/jwiegley/use-package) (this is the config that I use personally):
 ```elisp
 (use-package fira-code-mode
@@ -37,9 +35,10 @@ Without use-package:
 ```
 Again, the last two lines are optional, but they're a reasonable starting point.
 
-4. Enjoy the ligatures
+4. Done, enjoy the ligatures!
 
-
+## Customization
+As of now, `fira-code-mode-disabled-ligatures` is the only customizable option. Add a string to this list to prevent that string from being displayed with a ligature.
 
 ## Contributing
 
