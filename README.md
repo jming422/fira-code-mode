@@ -5,7 +5,7 @@ fira-code-mode
 
 This is a simple minor mode for Fira Code ligatures, built from [these instructions on the FiraCode repo](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols).
 
-You don't need to use Fira Code as your main font in Emacs for this to work! Using this minor mode will give you just the ligatures from the Fira Code font; it won't alter your fonts or faces in any other way.
+You don't need to use Fira Code as your main font in Emacs for this to work! Using this minor mode will give you just the ligatures from the Fira Code font; it won't alter your fonts or faces in any other way. (Of course, you're free to use Fira Code as your main font alongside this package - that's what I do!)
 
 ## Getting Started
 
