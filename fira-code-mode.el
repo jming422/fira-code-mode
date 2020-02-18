@@ -31,7 +31,7 @@
 
 ;; Minor mode for Fira Code ligatures, built from these instructions:
 ;; https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols
-;; 
+;;
 ;; NOTE: Requires installing the Fira Code Symbol font from here:
 ;; https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632
 
@@ -53,20 +53,20 @@ will need to disable and re-enable the mode in order for the edits to take effec
   "Generate prettify-symbols alist from LIST."
   (let ((idx -1))
     (delete nil
-     (mapcar
-      (lambda (s)
-	(setq idx (1+ idx))
-	(when s
-	  (let* ((code (+ #Xe100 idx))
-		 (width (string-width s))
-		 (prefix ())
-		 (suffix '(?\s (Br . Br)))
-		 (n 1))
-	    (while (< n width)
-	      (setq prefix (append prefix '(?\s (Br . Bl))))
-	      (setq n (1+ n)))
-	    (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
-      list))))
+            (mapcar
+             (lambda (s)
+               (setq idx (1+ idx))
+               (when s
+                 (let* ((code (+ #Xe100 idx))
+                        (width (string-width s))
+                        (prefix ())
+                        (suffix '(?\s (Br . Br)))
+                        (n 1))
+                   (while (< n width)
+                     (setq prefix (append prefix '(?\s (Br . Bl))))
+                     (setq n (1+ n)))
+                   (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
+             list))))
 
 (defconst fira-code-mode--all-ligatures
   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "[]" "::"
@@ -85,7 +85,7 @@ will need to disable and re-enable the mode in order for the edits to take effec
   (mapcar
    (lambda (s)
      (if (member s fira-code-mode-disabled-ligatures)
-	 nil ;; The list must retain the same number of elements, with `nil' in-place for disabled ligatures.
+         nil ;; The list must retain the same number of elements, with `nil' in-place for disabled ligatures.
        s))
    fira-code-mode--all-ligatures))
 
@@ -95,8 +95,8 @@ will need to disable and re-enable the mode in order for the edits to take effec
   "Enable Fira Code ligatures in current buffer."
   (setq-local fira-code-mode--old-prettify-alist prettify-symbols-alist)
   (setq-local prettify-symbols-alist (append
-				      (fira-code-mode--make-alist (fira-code-mode--ligatures))
-				      fira-code-mode--old-prettify-alist))
+                                      (fira-code-mode--make-alist (fira-code-mode--ligatures))
+                                      fira-code-mode--old-prettify-alist))
   (prettify-symbols-mode t))
 
 (defun fira-code-mode--disable ()
