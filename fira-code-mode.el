@@ -1,4 +1,14 @@
-;;; fira-code-mode.el --- Minor mode for Fira Code ligatures using prettify-symbols.
+;;; fira-code-mode.el --- Minor mode for Fira Code ligatures using prettify-symbols
+;; -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2020 Jonathan Ming
+
+;; Author: Jonathan Ming <jming422@gmail.com>
+;; Version: 1.0
+;; Package-Requires: ((emacs "24.4"))
+;; Keywords: faces, ligatures, fonts, programming-ligatures
+;; URL: https://github.com/jming422/fira-code-mode
+
 
 ;; This file is not part of GNU Emacs.
 
@@ -18,6 +28,7 @@
 ;; along with fira-code-mode.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
 ;; Minor mode for Fira Code ligatures, built from these instructions:
 ;; https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols
 ;; 
@@ -33,8 +44,8 @@
 (defcustom fira-code-mode-disabled-ligatures ()
   "Add a string to this list to prevent it from being displayed with a ligature.
 
-After editing this variable, any buffers that previously had fira-code-mode enabled
-will need to disable and re-enable fira-code-mode in order for the edits to take effect."
+After editing this variable, any buffers that previously had the ligature minor mode enabled
+will need to disable and re-enable the mode in order for the edits to take effect."
   :type '(repeat string) ;; TODO: Make this of type `set'
   :group 'fira-code-ligatures)
 
@@ -70,7 +81,7 @@ will need to disable and re-enable fira-code-mode in order for the edits to take
     "%%" "x" ":" "+" "+" "*"))
 
 (defun fira-code-mode--ligatures ()
-  "Generate a list of all ligatures not disabled via fira-code-mode-disabled-ligatures."
+  "Generate a list of all ligatures not disabled via `fira-code-mode-disabled-ligatures'."
   (mapcar
    (lambda (s)
      (if (member s fira-code-mode-disabled-ligatures)
@@ -93,6 +104,7 @@ will need to disable and re-enable fira-code-mode in order for the edits to take
   (setq-local prettify-symbols-alist fira-code-mode--old-prettify-alist)
   (prettify-symbols-mode -1))
 
+;;;###autoload
 (define-minor-mode fira-code-mode
   "Fira Code ligatures minor mode"
   :lighter  "  \xe15b"
@@ -104,7 +116,9 @@ will need to disable and re-enable fira-code-mode in order for the edits to take
       (fira-code-mode--enable)
     (fira-code-mode--disable)))
 
-;; The following function isn't used directly by fira-code-mode, but it's left here for utility's sake
+;; The following function isn't normally required, but if the range #Xe100 to #Xe16f has
+;; been previously customized by `set-fontset-font', then this function will ensure that
+;; this range is resolved using the Fira Code Symbol font instead.
 (defun fira-code-mode--setup ()
   "Setup Fira Code Symbols font."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
