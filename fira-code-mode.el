@@ -52,21 +52,21 @@ will need to disable and re-enable the mode in order for the edits to take effec
 (defun fira-code-mode--make-alist (list)
   "Generate prettify-symbols alist from LIST."
   (let ((idx -1))
-    (delete nil
-            (mapcar
-             (lambda (s)
-               (setq idx (1+ idx))
-               (when s
-                 (let* ((code (+ #Xe100 idx))
-                        (width (string-width s))
-                        (prefix ())
-                        (suffix '(?\s (Br . Br)))
-                        (n 1))
-                   (while (< n width)
-                     (setq prefix (append prefix '(?\s (Br . Bl))))
-                     (setq n (1+ n)))
-                   (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
-             list))))
+    (delq nil
+          (mapcar
+           (lambda (s)
+             (setq idx (1+ idx))
+             (when s
+               (let* ((code (+ #Xe100 idx))
+                      (width (string-width s))
+                      (prefix ())
+                      (suffix '(?\s (Br . Br)))
+                      (n 1))
+                 (while (< n width)
+                   (setq prefix (append prefix '(?\s (Br . Bl))))
+                   (setq n (1+ n)))
+                 (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
+           list))))
 
 (defconst fira-code-mode--all-ligatures
   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "[]" "::"
