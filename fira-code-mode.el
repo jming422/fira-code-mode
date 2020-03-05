@@ -109,7 +109,7 @@ will need to disable and re-enable the mode in order for the edits to take effec
   "Fira Code ligatures minor mode"
   :lighter "  \xe15b"
   :group 'fira-code-ligatures
-  (when (not (display-graphic-p))
+  (unless (display-graphic-p)
     (display-warning '(fira-code-ligatures) "Warning: fira-code-mode probably won't work for non-graphical displays!"))
   (setq-local prettify-symbols-unprettify-at-point 'right-edge)
   (if fira-code-mode
