@@ -1,6 +1,6 @@
 fira-code-mode
 ===
-### Minor mode for Fira Code ligatures using prettify-symbols.
+[![MELPA](https://melpa.org/packages/fira-code-mode-badge.svg)](https://melpa.org/#/fira-code-mode)
 ![screenshot1](https://github.com/jming422/fira-code-mode/raw/master/screenshots/screenshot1.png)
 
 This is a simple minor mode for Fira Code ligatures, built from [these instructions on the FiraCode repo](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols).
@@ -13,14 +13,13 @@ You don't need to use Fira Code as your main font in Emacs for this to work! Usi
    - If you don't know how to install a font to your system, check out Fira Code's main repo. They have some [good instructions here](https://github.com/tonsky/FiraCode/wiki/Installing).
    - Thanks to [@siegebell](https://github.com/siegebell) for creating this font.
 
-2. Clone this repo. I keep mine in `~/.emacs.d/git-lisp/fira-code-mode`, but you can put it wherever you like.
+2. Install `fira-code-mode`. (from MELPA: `M-x package-install RET fira-code-mode RET`)
 
 3. Enable `fira-code-mode` in your config. Here are some examples:
 
 With [use-package](https://github.com/jwiegley/use-package) (this is the config that I use personally):
 ```elisp
 (use-package fira-code-mode
-  :load-path "git-lisp/fira-code-mode"
   :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
   :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
 ```
@@ -28,7 +27,6 @@ Feel free to remove or change the `:custom` and `:hook` values of course, but th
 
 Without use-package:
 ```elisp
-(add-to-list 'load-path "~/.emacs.d/git-lisp/fira-code-mode")
 (require 'fira-code-mode)
 (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 (add-hook 'prog-mode-hook 'fira-code-mode) ;; Enables fira-code-mode automatically for modes descended from prog-mode
