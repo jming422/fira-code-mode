@@ -25,7 +25,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with fira-code-mode.  If not, see <http://www.gnu.org/licenses/>.
+;; along with fira-code-mode.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -116,11 +116,11 @@ will need to disable and re-enable the mode in order for the edits to take effec
       (fira-code-mode--enable)
     (fira-code-mode--disable)))
 
-;; The following function isn't normally required, but if the range #Xe100 to #Xe16f has
-;; been previously customized by `set-fontset-font', then this function will ensure that
-;; this range is resolved using the Fira Code Symbol font instead.
 (defun fira-code-mode--setup ()
-  "Setup Fira Code Symbols font."
+  "Setup Fira Code Symbols font.
+The following function isn't normally required, but if the range #Xe100 to
+#Xe16f has been previously customized by `set-fontset-font', then this function
+will ensure that this range is resolved using the Fira Code Symbol font instead."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
 
