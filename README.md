@@ -1,6 +1,7 @@
 fira-code-mode
 ===
 [![MELPA](https://melpa.org/packages/fira-code-mode-badge.svg)](https://melpa.org/#/fira-code-mode)
+
 ![screenshot1](https://github.com/jming422/fira-code-mode/raw/master/screenshots/screenshot1.png)
 
 This is a simple minor mode for Fira Code ligatures, built from [these instructions on the FiraCode repo](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions#using-prettify-symbols).
