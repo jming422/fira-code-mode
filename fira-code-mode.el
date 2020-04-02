@@ -142,7 +142,8 @@ option; if \"x\" is disabled but this option is enabled, then strings like
   (unless prettify-symbols-mode
     (prettify-symbols-mode t)
     (setq-local fira-code-mode--enabled-prettify-mode t))
-  (fira-code-mode--patch-hex-ligature))
+  (when fira-code-mode-enable-hex-literal
+    (fira-code-mode--patch-hex-ligature)))
 
 (defun fira-code-mode--disable ()
   "Disable Fira Code ligatures in current buffer."
