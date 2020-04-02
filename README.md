@@ -37,7 +37,10 @@ Again, the last two lines are optional, but they're a reasonable starting point.
 4. Done, enjoy the ligatures!
 
 ## Customization
-As of now, `fira-code-mode-disabled-ligatures` is the only customizable option. Add a string to this list to prevent that string from being displayed with a ligature.
+ - `fira-code-mode-disabled-ligatures`: Add a string to this list to prevent that string from being displayed with a ligature.
+ - `fira-code-mode-enable-hex-literal` (defaults to `t`): When non-nil, display the \"x\" in hex literals (like 0x12) with a ligature.
+   - Note: Adding \"x\" to the list of disabled ligatures does not effect this option; see this option's docstring for more info.
+
 
 ## Contributing
 
