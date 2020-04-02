@@ -36,6 +36,8 @@
 ;; https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632
 
 ;;; Code:
+
+;; Customizable variables:
 (defgroup fira-code-ligatures nil
   "Fira Code ligature settings."
   :version "0.0.1"
@@ -49,8 +51,23 @@ will need to disable and re-enable the mode in order for the edits to take effec
   :type '(repeat string) ;; TODO: Make this of type `set'
   :group 'fira-code-ligatures)
 
+(defcustom fira-code-mode-enable-hex-literal t
+  "When non-nil, display the \"x\" in hex literals with a ligature.
+e.g. 0x12 displays as 012
+
+When this option is enabled, command `fira-code-mode' adds a font-lock keyword
+in order to support displaying \"x\" as a ligature when preceded by a 0.
+
+Note that adding \"x\" to the list of disabled ligatures does not effect this
+option; if \"x\" is disabled but this option is enabled, then strings like
+\"0xE16B\" will have a ligature, while ones like \"0 x 1\" will not."
+  :type 'boolean
+  :group 'fira-code-ligatures)
+
+
+;; The sauce. Stuff we need to feed to `prettify-symbols':
 (defun fira-code-mode--make-alist (list)
-  "Generate prettify-symbols alist from LIST."
+  "Generate `prettify-symbols-alist' additions from LIST."
   (let ((idx -1))
     (delq nil
           (mapcar
@@ -89,6 +106,31 @@ will need to disable and re-enable the mode in order for the edits to take effec
        s))
    fira-code-mode--all-ligatures))
 
+
+;; Patch for the hex literal (e.g. 0x1234) ligature using `font-lock-keywords'
+(defconst fira-code-mode--hex-ligature-keyword '(("0\\(x\\)" 1 '(face nil display ""))))
+
+(defun fira-code-mode--patch-hex-ligature ()
+  "Patch `font-lock-keywords' with an entry for 0x-style hex literals."
+  (unless (member 'display font-lock-extra-managed-props)
+    (push 'display font-lock-extra-managed-props))
+  (font-lock-add-keywords nil fira-code-mode--hex-ligature-keyword)
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (when font-lock-mode
+      (with-no-warnings (font-lock-fontify-buffer)))))
+
+(defun fira-code-mode--unpatch-hex-ligature ()
+  "Unpatch `font-lock-keywords' with an entry for 0x-style hex literals."
+  (font-lock-remove-keywords nil fira-code-mode--hex-ligature-keyword)
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (when font-lock-mode
+      (with-no-warnings (font-lock-fontify-buffer)))))
+
+
+;; Minor mode definitions
+(defvar-local fira-code-mode--enabled-prettify-mode nil)
 (defvar fira-code-mode--old-prettify-alist)
 
 (defun fira-code-mode--enable ()
@@ -97,12 +139,18 @@ will need to disable and re-enable the mode in order for the edits to take effec
   (setq-local prettify-symbols-alist (append
                                       (fira-code-mode--make-alist (fira-code-mode--ligatures))
                                       fira-code-mode--old-prettify-alist))
-  (prettify-symbols-mode t))
+  (unless prettify-symbols-mode
+    (prettify-symbols-mode t)
+    (setq-local fira-code-mode--enabled-prettify-mode t))
+  (fira-code-mode--patch-hex-ligature))
 
 (defun fira-code-mode--disable ()
   "Disable Fira Code ligatures in current buffer."
+  (fira-code-mode--unpatch-hex-ligature)
   (setq-local prettify-symbols-alist fira-code-mode--old-prettify-alist)
-  (prettify-symbols-mode -1))
+  (when fira-code-mode--enabled-prettify-mode
+    (prettify-symbols-mode -1)
+    (setq-local fira-code-mode--enabled-prettify-mode nil)))
 
 ;;;###autoload
 (define-minor-mode fira-code-mode
@@ -116,6 +164,8 @@ will need to disable and re-enable the mode in order for the edits to take effec
       (fira-code-mode--enable)
     (fira-code-mode--disable)))
 
+
+;; Extra utility functions
 (defun fira-code-mode--setup ()
   "Setup Fira Code Symbols font.
 The following function isn't normally required, but if the range #Xe100 to
@@ -123,6 +173,7 @@ The following function isn't normally required, but if the range #Xe100 to
 will ensure that this range is resolved using the Fira Code Symbol font instead."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
+
 
 (provide 'fira-code-mode)
 ;;; fira-code-mode.el ends here
