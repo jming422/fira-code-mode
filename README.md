@@ -16,8 +16,11 @@ You don't need to use Fira Code as your main font in Emacs for this to work! Usi
 
 2. Install `fira-code-mode`. (from MELPA: `M-x package-install RET fira-code-mode RET`)
 
-3. Enable `fira-code-mode` in your config. Here are some examples:
+3. Enable `fira-code-mode` in your config, either using `(global-fira-code-mode)` or by adding `fira-code-mode` to whichever hooks you like.
 
+4. Done, enjoy the ligatures!
+
+## Example Configs
 With [use-package](https://github.com/jwiegley/use-package) (this is the config that I use personally):
 ```elisp
 (use-package fira-code-mode
@@ -26,15 +29,23 @@ With [use-package](https://github.com/jwiegley/use-package) (this is the config 
 ```
 Feel free to remove or change the `:custom` and `:hook` values of course, but those are the ones I've found useful. Most of the ligatures I've disabled are purely preferential; some of them conflicted with other syntax styling for e.g. Clojure reader macros.
 
-Without use-package:
+If you want to use the global minor mode with use-package:
+```elisp
+(use-package fira-code-mode
+  :config (global-fira-code-mode))
+```
+
+An example config without use-package:
 ```elisp
 (require 'fira-code-mode)
 (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
-(add-hook 'prog-mode-hook 'fira-code-mode) ;; Enables fira-code-mode automatically for modes descended from prog-mode
-```
-Again, the last two lines are optional, but they're a reasonable starting point.
 
-4. Done, enjoy the ligatures!
+;; Enable fira-code-mode automatically for programming major modes
+(add-hook 'prog-mode-hook 'fira-code-mode)
+;; Or, you can use the global mode instead of adding a hook:
+(global-fira-code-mode)
+```
+
 
 ## Customization
  - `fira-code-mode-disabled-ligatures`: Add a string to this list to prevent that string from being displayed with a ligature.
