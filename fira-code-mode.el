@@ -165,6 +165,9 @@ option; if \"x\" is disabled but this option is enabled, then strings like
       (fira-code-mode--enable)
     (fira-code-mode--disable)))
 
+;;;###autoload
+(define-globalized-minor-mode global-fira-code-mode fira-code-mode
+  fira-code-mode)
 
 ;; Extra utility functions
 (defun fira-code-mode--setup ()
