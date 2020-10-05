@@ -36,6 +36,7 @@
 ;; https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632
 
 ;;; Code:
+(require 'cl-lib)
 
 ;; Customizable variables:
 (defgroup fira-code-ligatures nil
@@ -178,6 +179,28 @@ will ensure that this range is resolved using the Fira Code Symbol font instead.
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
 
+;;;###autoload
+(defun fira-code-mode-install-fonts (&optional pfx)
+  "Helper function to download and install the latests fonts based on OS.
+When PFX is non-nil, ignore the prompt and just install"
+  (interactive "P")
+  (when (or pfx (yes-or-no-p "This will download and install fonts, are you sure you want to do this?"))
+    (let* ((font-url "https://raw.githubusercontent.com/jming422/fira-code-mode/master/fonts/FiraCode-Regular-Symbol.otf")
+           (font-dest (cl-case window-system
+                        (x (if (getenv "XDG_DATA_HOME")
+                               (expand-file-name "fonts/" (getenv "XDG_DATA_HOME"))
+                             (expand-file-name ".local/share/fonts/" (getenv "HOME"))))
+                        (ns (expand-file-name "Library/Fonts/" (getenv "HOME")))))
+           (known-dest? (stringp font-dest))
+           (font-dest (or font-dest (read-directory-name "Font installation directory: " "~/"))))
+      (unless (file-directory-p font-dest) (mkdir font-dest t))
+      (url-copy-file font-url (expand-file-name (file-name-nondirectory font-url) font-dest) t)
+      (when known-dest?
+        (message "Fonts downloaded, updating font cache... <fc-cache -f -v> ")
+        (shell-command-to-string (format "fc-cache -f -v")))
+      (message "Successfully %s `fira-code-mode' fonts to `%s'!"
+               (if known-dest? "installed" "downloaded")
+               font-dest))))
 
 (provide 'fira-code-mode)
 ;;; fira-code-mode.el ends here

@@ -10,12 +10,13 @@ You don't need to use Fira Code as your main font in Emacs for this to work! Usi
 
 ## Getting Started
 
-1. Install the Fira Code Symbol font to your system ([Download](https://raw.githubusercontent.com/jming422/fira-code-mode/master/fonts/FiraCode-Regular-Symbol.otf)) ([Original post](https://github.com/tonsky/FiraCode/issues/211#issuecomment-239058632)).
-   - If you don't know how to install a font to your system, check out Fira Code's main repo. They have some [good instructions here](https://github.com/tonsky/FiraCode/wiki/Installing).
-   - *Note:* This Fira Code Symbol font is not the same as the real Fira Code font, and you need to install Fira Code Symbol whether you have regular Fira Code on your system or not.
-   - Thanks to [@siegebell](https://github.com/siegebell) for creating this font.
+1. Install `fira-code-mode`. (from MELPA: `M-x package-install RET fira-code-mode RET`)
 
-2. Install `fira-code-mode`. (from MELPA: `M-x package-install RET fira-code-mode RET`)
+2. Install the `Fira Code Symbol` font to your system by `M-x fira-code-mode-install-fonts RET`
+   - Or you can install the font manually. Download the font [here](https://raw.githubusercontent.com/jming422/fira-code-mode/master/fonts/FiraCode-Regular-Symbol.otf)
+     and follow the instructions [here](https://github.com/tonsky/FiraCode/wiki/Installing).
+   - *Note:* This `Fira Code Symbol` font is not the same as the real `Fira Code` font, and you need to install `Fira Code Symbol` whether you have regular `Fira Code` on your system or not.
+   - Thanks to [@siegebell](https://github.com/siegebell) for creating this font.
 
 3. Enable `fira-code-mode` in your config, either using `(global-fira-code-mode)` or by adding `fira-code-mode` to whichever hooks you like.
 
