@@ -171,11 +171,13 @@ option; if \"x\" is disabled but this option is enabled, then strings like
   fira-code-mode)
 
 ;; Extra utility functions
-(defun fira-code-mode--setup ()
+;;;###autoload
+(defun fira-code-mode-set-font ()
   "Setup Fira Code Symbols font.
-The following function isn't normally required, but if the range #Xe100 to
-#Xe16f has been previously customized by `set-fontset-font', then this function
-will ensure that this range is resolved using the Fira Code Symbol font instead."
+This function isn't normally required, but if the range #Xe100 to #Xe16f is
+being rendered by some other font besides Fira Code Symbol, then this function
+will ensure that this range is resolved using the Fira Code Symbol font
+instead."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
 
