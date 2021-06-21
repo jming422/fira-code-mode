@@ -60,6 +60,16 @@ An example config without use-package:
 - `fira-code-mode-enable-hex-literal` (defaults to `t`): When non-nil, display the \"x\" in hex literals (like 0x12) with a ligature.
   - Note: Adding \"x\" to the list of disabled ligatures does not effect this option; see this option's docstring for more info.
 
+## Troubleshooting Common Issues
+
+### Ligatures are rendered using the wrong font (#16)
+
+If you see unexpected symbols where ligatures should be, then it's likely that some other font on your system is being used to resolve the prettified symbols instead of Fira Code Symbol. You should be able to resolve this by:
+
+1.  Ensuring you have the `Fira Code Symbol` font installed - see Getting Started step 2 above
+2.  If you have `Fira Code Symbol` installed, but another font is still being used to display the ligatures, then add this function call to your config: `(fira-code-mode-set-font)`
+    - With `use-package`, this should go in your `:config`. Otherwise, it can go anywhere after `(require 'fira-code-mode)`.
+
 ## Contributing
 
 This is the first Emacs package that I've made, and I'm making it available in hopes that it will make your lives easier as it did mine. I welcome suggestions and contributions, but here are a couple things to be aware of:
