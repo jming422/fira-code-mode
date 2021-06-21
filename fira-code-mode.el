@@ -181,6 +181,8 @@ instead."
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
   (message "Finished setting up the Fira Code Symbol font."))
 
+(defvaralias 'fira-code-mode--setup 'fira-code-mode-set-font)
+
 ;;;###autoload
 (defun fira-code-mode-install-fonts (&optional pfx)
   "Helper function to download and install the latests fonts based on OS.
