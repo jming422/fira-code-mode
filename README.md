@@ -12,7 +12,7 @@ You don't need to use Fira Code as your main font in Emacs for this to work! Usi
 
 1. Install `fira-code-mode`. (from MELPA: `M-x package-install RET fira-code-mode RET`)
 
-2. Install the `Fira Code Symbol` font to your system by `M-x fira-code-mode-install-fonts RET`
+2. Install the `Fira Code Symbol` font to your system with `M-x fira-code-mode-install-fonts RET`
 
    - Or you can install the font manually. Download the font [here](https://raw.githubusercontent.com/jming422/fira-code-mode/master/fonts/FiraCode-Regular-Symbol.otf)
      and follow the instructions [here](https://github.com/tonsky/FiraCode/wiki/Installing).
@@ -56,13 +56,13 @@ An example config without use-package:
 
 ## Customization
 
-- `fira-code-mode-disabled-ligatures`: Add a string to this list to prevent that string from being displayed with a ligature.
+- `fira-code-mode-disabled-ligatures`: Add a string to this list to prevent that string from being displayed with a ligature. You can put any ligature powered by `fira-code-mode` in here, and you can also put `"lambda"` in this list to disable the Emacs default "lambda" ligature. You cannot use this list to disable ligatures provided by other packages, however.
 - `fira-code-mode-enable-hex-literal` (defaults to `t`): When non-nil, display the \"x\" in hex literals (like 0x12) with a ligature.
   - Note: Adding \"x\" to the list of disabled ligatures does not effect this option; see this option's docstring for more info.
 
 ## Troubleshooting Common Issues
 
-### Ligatures are rendered using the wrong font (#16)
+### Ligatures are rendered using the wrong font [#16](https://github.com/jming422/fira-code-mode/issues/16)
 
 If you see unexpected symbols where ligatures should be, then it's likely that some other font on your system is being used to resolve the prettified symbols instead of Fira Code Symbol. You should be able to resolve this by:
 

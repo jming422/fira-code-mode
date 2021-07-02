@@ -137,9 +137,16 @@ option; if \"x\" is disabled but this option is enabled, then strings like
 (defun fira-code-mode--enable ()
   "Enable Fira Code ligatures in current buffer."
   (setq-local fira-code-mode--old-prettify-alist prettify-symbols-alist)
-  (setq-local prettify-symbols-alist (append
-                                      (fira-code-mode--make-alist (fira-code-mode--ligatures))
-                                      fira-code-mode--old-prettify-alist))
+  (let ((new-prettify-alist (append
+                             (fira-code-mode--make-alist (fira-code-mode--ligatures))
+                             fira-code-mode--old-prettify-alist)))
+    (setq-local
+     prettify-symbols-alist
+     (if (member "lambda" fira-code-mode-disabled-ligatures)
+	 ;; The lambda ligature is added by Emacs, not by `fira-code-mode--ligatures', so if we want it removed we have
+	 ;; to do it separately from `fira-code-mode--ligatures'.
+	 (remove '("lambda" . 955) new-prettify-alist)
+       new-prettify-alist)))
   (unless prettify-symbols-mode
     (prettify-symbols-mode t)
     (setq-local fira-code-mode--enabled-prettify-mode t))
@@ -160,7 +167,7 @@ option; if \"x\" is disabled but this option is enabled, then strings like
   :lighter "  \xe15b"
   :group 'fira-code-ligatures
   (unless (display-graphic-p)
-    (display-warning '(fira-code-ligatures) "Warning: fira-code-mode probably won't work for non-graphical displays!"))
+    (display-warning '(fira-code-ligatures) "fira-code-mode probably won't work for non-graphical displays!"))
   (setq-local prettify-symbols-unprettify-at-point 'right-edge)
   (if fira-code-mode
       (fira-code-mode--enable)
