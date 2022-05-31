@@ -197,11 +197,15 @@ When PFX is non-nil, ignore the prompt and just install"
   (interactive "P")
   (when (or pfx (yes-or-no-p "This will download and install fonts, are you sure you want to do this?"))
     (let* ((font-url "https://raw.githubusercontent.com/jming422/fira-code-mode/master/fonts/FiraCode-Regular-Symbol.otf")
-           (font-dest (cl-case window-system
-                        (x (if (getenv "XDG_DATA_HOME")
-                               (expand-file-name "fonts/" (getenv "XDG_DATA_HOME"))
-                             (expand-file-name ".local/share/fonts/" (getenv "HOME"))))
-                        (ns (expand-file-name "Library/Fonts/" (getenv "HOME")))))
+           (font-dest (cond
+                       ;; Default Linux install directories
+                       ((member system-type '(gnu gnu/linux gnu/kfreebsd))
+                        (concat (or (getenv "XDG_DATA_HOME")
+                                    (concat (getenv "HOME") "/.local/share"))
+                                "/fonts/"))
+                       ;; Default MacOS install directory
+                       ((eq system-type 'darwin)
+                        (concat (getenv "HOME") "/Library/Fonts/"))))
            (known-dest? (stringp font-dest))
            (font-dest (or font-dest (read-directory-name "Font installation directory: " "~/"))))
       (unless (file-directory-p font-dest) (mkdir font-dest t))
