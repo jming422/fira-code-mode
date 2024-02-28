@@ -109,7 +109,7 @@ option; if \"x\" is disabled but this option is enabled, then strings like
 
 
 ;; Patch for the hex literal (e.g. 0x1234) ligature using `font-lock-keywords'
-(defconst fira-code-mode--hex-ligature-keyword '(("0\\(x\\)" 1 '(face nil display ""))))
+(defconst fira-code-mode--hex-ligature-keyword '(("\\b0\\(x\\)[a-fA-F0-9]+\\b" 1 '(face nil display ""))))
 
 (defun fira-code-mode--patch-hex-ligature ()
   "Patch `font-lock-keywords' with an entry for 0x-style hex literals."
